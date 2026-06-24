@@ -1,0 +1,16 @@
+{
+  "trusted": [
+    "Google Analytics",
+    "Stripe",
+    "AWS",
+    "Cloudflare",
+    "Razorpay"
+  ],
+  "caution": [
+    "Facebook Pixel",
+    "TikTok Pixel",
+    "Hotjar",
+    "DoubleClick",
+    "Mixpanel"
+  ]
+}

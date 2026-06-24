@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PrivacyLens</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">PrivacyLens</div>
+    <div class="daily-usage" id="usage-counter">0/10 domains today</div>
+  </header>
+
+  <!-- Status Section -->
+  <section id="status-section" class="status-loading">
+    <p id="status-message">Analyzing...</p>
+  </section>
+
+  <!-- Main Content (hidden by default until loaded) -->
+  <main id="main-content" style="display: none;">
+    
+    <!-- Risk Score Section -->
+    <section id="risk-score-section">
+      <h2>Risk Score</h2>
+      <div id="risk-score-badge" class="badge">Unknown</div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary-section">
+      <h2>Summary</h2>
+      <p id="data-summary">No summary available.</p>
+    </section>
+
+    <!-- Red Flags Section -->
+    <section id="red-flags-section">
+      <h2>Red Flags</h2>
+      <ul id="red-flags-list">
+        <!-- populated via js -->
+      </ul>
+    </section>
+
+    <!-- Third Parties Section -->
+    <section id="third-parties-section">
+      <h2>Third Parties</h2>
+      <ul id="third-parties-list">
+        <!-- populated via js -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "PrivacyLens",
+  "version": "1.0",
+  "description": "Reads Terms & Conditions / Privacy Policy pages and shows users a plain-English summary with red flags and a risk score.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src http://localhost:3000"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Open PrivacyLens"
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
