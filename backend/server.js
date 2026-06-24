@@ -63,8 +63,8 @@ app.post('/api/summarize', rateLimiter, async (req, res) => {
   }
   
   let processedText = text;
-  if (processedText.length > 15000) {
-    processedText = processedText.substring(0, 15000);
+  if (processedText.length > 30000) {
+    processedText = processedText.substring(0, 30000);
   }
 
   // Sanitize

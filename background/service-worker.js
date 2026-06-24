@@ -2,7 +2,7 @@
  
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 // Change BACKEND_URL to your Railway/Render URL before deploying
-const BACKEND_URL = "http://localhost:3000";
+const BACKEND_URL = "https://privacy-lens-3dmv.onrender.com";
 const CACHE_TTL   = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 const DAILY_LIMIT = 10;                   // Max unique domains per day
  
