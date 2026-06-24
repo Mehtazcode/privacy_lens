@@ -1,112 +1,211 @@
-/* popup.css */
+/* popup.css — PrivacyLens redesign */
 
-/* Reset and Base Styles */
-* {
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+/* ── Base ────────────────────────────────────────────────────────────────── */
 body {
   width: 380px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #333;
-  background-color: #f9f9f9;
-  padding: 16px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f0f4f8;
+  color: #1e293b;
   line-height: 1.5;
 }
 
-/* Header */
+/* ── Header ──────────────────────────────────────────────────────────────── */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 12px;
-  margin-bottom: 16px;
+  background: #0f172a;
+  padding: 12px 16px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logo-icon {
+  font-size: 1rem;
+  line-height: 1;
 }
 
 .logo {
-  font-size: 1.25rem;
-  font-weight: bold;
-  color: #2c3e50;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.2px;
 }
 
 .daily-usage {
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #94a3b8;
+  background: #1e293b;
+  padding: 3px 9px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
 }
 
-/* Status Section */
+/* ── Status Section ──────────────────────────────────────────────────────── */
 #status-section {
+  padding: 36px 20px;
   text-align: center;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  margin-bottom: 16px;
 }
 
-.status-loading { color: #f39c12; }
-.status-error { color: #e74c3c; }
-.status-info { color: #3498db; }
-
-/* Sections */
-section {
-  background-color: #fff;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  margin-bottom: 12px;
+#status-section p {
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
-h2 {
-  font-size: 1rem;
-  margin-bottom: 8px;
-  color: #2c3e50;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 4px;
+#status-section.status-loading p { color: #d97706; }
+#status-section.status-loading p::before { content: "⏳ "; }
+
+#status-section.status-error p { color: #dc2626; }
+#status-section.status-error p::before { content: "⚠️ "; }
+
+#status-section.status-info p { color: #2563eb; }
+#status-section.status-info p::before { content: "ℹ️ "; }
+
+/* ── Scrollable Results Area ─────────────────────────────────────────────── */
+#main-content {
+  max-height: 480px;
+  overflow-y: auto;
 }
 
-/* Typography for contents */
-p, li {
-  font-size: 0.9rem;
-  color: #555;
+#main-content::-webkit-scrollbar { width: 3px; }
+#main-content::-webkit-scrollbar-track { background: transparent; }
+#main-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
+
+/* ── Risk Score — the signature element ──────────────────────────────────── */
+/* Full-bleed verdict card. Background colour is applied by risk-* classes.   */
+#risk-score-section {
+  padding: 20px 16px 18px;
+  text-align: center;
 }
 
-ul {
-  list-style-type: none;
-}
-
-ul li {
+.risk-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   margin-bottom: 6px;
+  opacity: 0.7;
+}
+
+/* The badge element inside the risk section */
+#risk-score-badge.badge {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Risk level colours — applied to the section, label inherits */
+#risk-score-section:has(#risk-score-badge.risk-low)   { background: #f0fdf4; }
+#risk-score-section:has(#risk-score-badge.risk-medium) { background: #fffbeb; }
+#risk-score-section:has(#risk-score-badge.risk-high)   { background: #fff1f2; }
+
+#risk-score-badge.risk-low   { color: #15803d; }
+#risk-score-badge.risk-medium { color: #b45309; }
+#risk-score-badge.risk-high  { color: #be123c; }
+
+/* Fallback for unknown state */
+#risk-score-section { background: #f8fafc; }
+#risk-score-badge.trust-unknown { color: #64748b; font-size: 1rem; letter-spacing: 1px; }
+
+/* ── Cards (Summary / Red Flags / Third Parties) ─────────────────────────── */
+.card {
+  background: #ffffff;
+  margin: 8px;
+  border-radius: 10px;
+  padding: 13px 14px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+/* ── Summary Text ────────────────────────────────────────────────────────── */
+#data-summary {
+  font-size: 0.855rem;
+  color: #475569;
+  line-height: 1.65;
+}
+
+/* ── Red Flags List ──────────────────────────────────────────────────────── */
+#red-flags-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#red-flags-list li {
+  font-size: 0.84rem;
+  color: #374151;
+  line-height: 1.5;
+  padding: 8px 10px;
+  background: #fff7f7;
+  border-left: 3px solid #f87171;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ── Third Parties List ──────────────────────────────────────────────────── */
+#third-parties-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+#third-parties-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 0;
+  font-size: 0.855rem;
+  color: #374151;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-/* Badges */
+#third-parties-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+#third-parties-list li:first-child {
+  padding-top: 0;
+}
+
+/* ── Trust Badges ────────────────────────────────────────────────────────── */
 .badge {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  font-weight: bold;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
 }
 
-/* Risk Score Colors */
-.risk-low { background-color: #e8f5e9; color: #2e7d32; }
-.risk-medium { background-color: #fff3e0; color: #ef6c00; }
-.risk-high { background-color: #ffebee; color: #c62828; }
-
-/* Trust Badge Colors */
-.trust-trusted { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
-.trust-caution { background-color: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
-.trust-unknown { background-color: #f5f5f5; color: #757575; border: 1px solid #e0e0e0; }
-
-/* Red Flags List */
-#red-flags-list li::before {
-  content: "⚠️";
-  margin-right: 8px;
-}
+.trust-trusted { background: #dcfce7; color: #15803d; }
+.trust-caution { background: #fef3c7; color: #b45309; }
+.trust-unknown { background: #f1f5f9; color: #64748b; }

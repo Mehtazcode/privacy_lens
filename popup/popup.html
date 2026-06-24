@@ -6,46 +6,46 @@
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- Header — always visible -->
   <header>
-    <div class="logo">PrivacyLens</div>
-    <div class="daily-usage" id="usage-counter">0/10 domains today</div>
+    <div class="logo-group">
+      <span class="logo-icon">🔍</span>
+      <span class="logo">PrivacyLens</span>
+    </div>
+    <div class="daily-usage" id="usage-counter">0/10 today</div>
   </header>
 
-  <!-- Status Section -->
-  <section id="status-section" class="status-loading">
+  <!-- Status message (shown while loading, on error, or on non-T&C pages) -->
+  <div id="status-section" class="status-loading">
     <p id="status-message">Analyzing...</p>
-  </section>
+  </div>
 
-  <!-- Main Content (hidden by default until loaded) -->
+  <!-- Main results (hidden until analysis is ready) -->
   <main id="main-content" style="display: none;">
-    
-    <!-- Risk Score Section -->
-    <section id="risk-score-section">
-      <h2>Risk Score</h2>
-      <div id="risk-score-badge" class="badge">Unknown</div>
-    </section>
 
-    <!-- Summary Section -->
-    <section id="summary-section">
+    <!-- Risk Score — full-bleed verdict card -->
+    <div id="risk-score-section">
+      <p class="risk-label">Risk Level</p>
+      <div id="risk-score-badge" class="badge">Unknown</div>
+    </div>
+
+    <!-- Summary -->
+    <section class="card">
       <h2>Summary</h2>
       <p id="data-summary">No summary available.</p>
     </section>
 
-    <!-- Red Flags Section -->
-    <section id="red-flags-section">
+    <!-- Red Flags -->
+    <section class="card">
       <h2>Red Flags</h2>
-      <ul id="red-flags-list">
-        <!-- populated via js -->
-      </ul>
+      <ul id="red-flags-list"></ul>
     </section>
 
-    <!-- Third Parties Section -->
-    <section id="third-parties-section">
+    <!-- Third Parties -->
+    <section class="card">
       <h2>Third Parties</h2>
-      <ul id="third-parties-list">
-        <!-- populated via js -->
-      </ul>
+      <ul id="third-parties-list"></ul>
     </section>
 
   </main>
